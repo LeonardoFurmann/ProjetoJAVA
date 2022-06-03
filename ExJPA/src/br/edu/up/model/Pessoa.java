@@ -1,6 +1,7 @@
 package br.edu.up.model;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuario")
 public class Pessoa implements Serializable {
-
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -51,6 +53,8 @@ public class Pessoa implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	
 	
 }
 

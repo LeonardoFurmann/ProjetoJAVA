@@ -14,7 +14,6 @@ import br.edu.up.model.Serie;
 
 public class Programa {
 	
-
 	static EntityManagerFactory emf;
 	static EntityManager em;
 
@@ -23,31 +22,30 @@ public class Programa {
 		emf = Persistence.createEntityManagerFactory("prj-jpa-sqlite");
 		em = emf.createEntityManager();
 		
-		Cadastro();
 		
+//		Cadastro();
 
-		
-		
-		
 }
-
-	public static void Cadastro() {
-		Scanner leitor = new Scanner(System.in);
-		Pessoa novaP = new Pessoa();
-		String confS;
+	
+public static void Cadastro() {
+	Scanner leitor = new Scanner(System.in);
+		Pessoa novaPessoa = new Pessoa();
 		
 		System.out.println("Informe seu nome: ");
-		novaP.setNome(leitor.nextLine());
+		novaPessoa.setNome(leitor.nextLine());
 		System.out.println("Informe seu email: ");
-		novaP.setEmail(leitor.nextLine());
+		novaPessoa.setEmail(leitor.nextLine());
 		System.out.println("Informe seu número: ");
-		novaP.setNumero(leitor.nextInt());
+		novaPessoa.setNumero(leitor.nextInt());
 		leitor.nextLine();
 		System.out.println("Informe sua senha: ");
-		novaP.setSenha(leitor.nextLine());		
+		novaPessoa.setSenha(leitor.nextLine());		
+		
+//		salvarP(novaPessoa);
 		
 		leitor.close();
 	}
+
 	
 	
 // ------------------------- TABELA FILME -------------------------------- 
