@@ -22,29 +22,31 @@ public class Programa {
 		emf = Persistence.createEntityManagerFactory("prj-jpa-sqlite");
 		em = emf.createEntityManager();
 		
+		Pessoa novaPessoa = new Pessoa();
+		novaPessoa.Cadastro();
 		
-//		Cadastro();
+//		salvarP(novaPessoa);
 
 }
 	
-public static void Cadastro() {
-	Scanner leitor = new Scanner(System.in);
-		Pessoa novaPessoa = new Pessoa();
-		
-		System.out.println("Informe seu nome: ");
-		novaPessoa.setNome(leitor.nextLine());
-		System.out.println("Informe seu email: ");
-		novaPessoa.setEmail(leitor.nextLine());
-		System.out.println("Informe seu número: ");
-		novaPessoa.setNumero(leitor.nextInt());
-		leitor.nextLine();
-		System.out.println("Informe sua senha: ");
-		novaPessoa.setSenha(leitor.nextLine());		
-		
-//		salvarP(novaPessoa);
-		
-		leitor.close();
-	}
+//public static void Cadastro() {
+//	Scanner leitor = new Scanner(System.in);
+//		Pessoa novaPessoa = new Pessoa();
+//		
+//		System.out.println("Informe seu nome: ");
+//		novaPessoa.setNome(leitor.nextLine());
+//		System.out.println("Informe seu email: ");
+//		novaPessoa.setEmail(leitor.nextLine());
+//		System.out.println("Informe seu número: ");
+//		novaPessoa.setNumero(leitor.nextInt());
+//		leitor.nextLine();
+//		System.out.println("Informe sua senha: ");
+//		novaPessoa.setSenha(leitor.nextLine());		
+//		
+////		salvarP(novaPessoa);
+//		
+//		leitor.close();
+//	}
 
 	
 	
