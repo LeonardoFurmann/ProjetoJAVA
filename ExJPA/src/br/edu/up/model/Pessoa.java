@@ -114,21 +114,31 @@ public class Pessoa implements Serializable {
 				System.out.println(pessoa);
 	}
 	
-	public  void Cadastro() {
-		Scanner leitor = new Scanner(System.in);
+	public static void imprimirPessoas(List<Pessoa> pessoas)
+	{
+		for (Pessoa pessoa : pessoas) {
+			System.out.println();
+			System.out.println("------------------");
+			System.out.println();
+			System.out.println("ID: " + pessoa.getId());
+			System.out.println("Nome: " + pessoa.getNome());
+			System.out.println("Email: " + pessoa.getEmail());
+		}
+	}
+	
+	public  void CadastroPessoa(Scanner leitor) {
 			
-			System.out.println("Informe seu nome: ");
+		System.out.println("\n\n---------CADASTRAR PESSOAS---------\n");
+			System.out.print("Informe seu nome: ");
 			setNome(leitor.nextLine());
-			System.out.println("Informe seu email: ");
+			System.out.print("Informe seu email: ");
 			setEmail(leitor.nextLine());
-			System.out.println("Informe seu número: ");
+			System.out.print("Informe seu número: ");
 			setNumero(leitor.nextInt());
 			leitor.nextLine();
-			System.out.println("Informe sua senha: ");
+			System.out.print("Informe sua senha: ");
 			setSenha(leitor.nextLine());		
 			
-			
-			leitor.close();
 		}
 }
 

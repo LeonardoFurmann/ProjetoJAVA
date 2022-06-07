@@ -6,6 +6,7 @@ import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 
 import br.edu.up.model.Filme;
 import br.edu.up.model.Pessoa;
@@ -22,164 +23,66 @@ public class Programa {
 		emf = Persistence.createEntityManagerFactory("prj-jpa-sqlite");
 		em = emf.createEntityManager();
 		
-		Pessoa novaPessoa = new Pessoa();
-		novaPessoa.Cadastro();
 		
-//		salvarP(novaPessoa);
+		Menu();
 
 }
 	
-//public static void Cadastro() {
-//	Scanner leitor = new Scanner(System.in);
-//		Pessoa novaPessoa = new Pessoa();
-//		
-//		System.out.println("Informe seu nome: ");
-//		novaPessoa.setNome(leitor.nextLine());
-//		System.out.println("Informe seu email: ");
-//		novaPessoa.setEmail(leitor.nextLine());
-//		System.out.println("Informe seu número: ");
-//		novaPessoa.setNumero(leitor.nextInt());
-//		leitor.nextLine();
-//		System.out.println("Informe sua senha: ");
-//		novaPessoa.setSenha(leitor.nextLine());		
-//		
-////		salvarP(novaPessoa);
-//		
-//		leitor.close();
-//	}
 
+	public static void Menu() {
+		Scanner leitor = new Scanner(System.in);
 	
+		int op = 0;
+		do {
+			System.out.println("\n\n---------MENU---------\n");
+			System.out.println(" 1 - Cadastrar Pessoa");
+			System.out.println(" 2 - Cadastrar Filme");
+			System.out.println(" 3 - Cadastrar Série");
+			System.out.println(" 4 - Listar Pessoas");
+			System.out.println(" 5 - Listar Filmes");
+			System.out.println(" 6 - Listar Séries");
+			System.out.println(" 7 - Sair");
+			System.out.print("\nInforme uma opção: ");
+			op = leitor.nextInt();
+			leitor.nextLine();
 	
-// ------------------------- TABELA FILME -------------------------------- 
-
-	public static List<Filme> listarFilmes() {
-		List<Filme> filmes = 
-				em.createQuery("from Filme", Filme.class)
-				.getResultList();
-		return filmes;
+		switch (op) {
+		case 1:
+			Pessoa novaPessoa = new Pessoa();
+			novaPessoa.CadastroPessoa(leitor);
+//			Pessoa.salvarP(novaPessoa);
+			break;
+		case 2:
+			Filme novoFilme = new Filme();
+			novoFilme.CadastroFilme(leitor);
+			Filme.salvarF(novoFilme);
+			break;
+		case 3:
+			Serie novaSerie = new Serie();
+			novaSerie.CadastroSerie(leitor);
+			Serie.salvarS(novaSerie);
+			break;
+		case 4:
+			Pessoa.imprimirPessoas(Pessoa.listarPessoas());
+			break;
+		case 5:
+			Filme.imprimirFilmes(Filme.listarFilmes());
+			break;
+		case 6:
+			Serie.imprimirSeries(Serie.listarSeries());
+			break;
+		case 7:
+			System.out.println("Saiu.");
+			break;
+		 default:
+			System.out.println("Opção Inválida");
+			break;
+			}
+		
+		
+		
+		}while(op != 7);
+	
+		leitor.close();
 	}
-	
-
-	public static Integer salvar(Filme filme) {
-		em.getTransaction().begin();
-		em.persist(filme);
-		em.getTransaction().commit();
-		return filme.getId();
-	}
-
-	public static Filme localizar(Integer id) {
-		Filme filme = em.find(Filme.class, id);
-		return filme;
-	}
-	
-
-	public static void atualizar(Filme filme) {
-		em.getTransaction().begin();
-		em.merge(filme);
-		em.getTransaction().commit();
-	}
-
-	public static void apagar(Integer id) {
-		Filme filme = em.find(Filme.class, id);
-		em.getTransaction().begin();
-		em.remove(filme);
-		em.getTransaction().commit();
-	}
-
-	@SuppressWarnings("unused")
-	private static void imprimir(Filme filme) {
-				System.out.println(filme);
-    }
-
-
-	
-	
-	
-// ------------------------- TABELA PESSOA -------------------------------- 
-
-public static List<Pessoa> listarPessoas() {
-	List<Pessoa> pessoas = 
-			em.createQuery("from Pessoa", Pessoa.class)
-			.getResultList();
-	return pessoas;
-}
-
-
-public static Integer salvarP(Pessoa pessoa) {
-	em.getTransaction().begin();
-	em.persist(pessoa);
-	em.getTransaction().commit();
-	return pessoa.getId();
-}
-
-public static Pessoa localizarP(Integer id) {
-	Pessoa pessoa = em.find(Pessoa.class, id);
-	return pessoa;
-}
-
-
-public static void atualizarP(Pessoa pessoa) {
-	em.getTransaction().begin();
-	em.merge(pessoa);
-	em.getTransaction().commit();
-}
-
-public static void apagarP(Integer id) {
-	Pessoa pessoa = em.find(Pessoa.class, id);
-	em.getTransaction().begin();
-	em.remove(pessoa);
-	em.getTransaction().commit();
-}
-
-@SuppressWarnings("unused")
-private static void imprimir(Serie pessoa) {
-			System.out.println(pessoa);
-}
-
-
-
-
-
-// ------------------------------ TABELA SERIES ------------------------- 
-
-public static List<Serie> listarSeries() {
-	List<Serie> series = 
-			em.createQuery("from Serie", Serie.class)
-			.getResultList();
-	return series;
-}
-
-
-public static Integer salvarS(Serie serie) {
-	em.getTransaction().begin();
-	em.persist(serie);
-	em.getTransaction().commit();
-	return serie.getId();
-}
-
-public static Serie localizarS(Integer id) {
-	Serie serie = em.find(Serie.class, id);
-	return serie;
-}
-
-
-public static void atualizarS(Serie serie) {
-	em.getTransaction().begin();
-	em.merge(serie);
-	em.getTransaction().commit();
-}
-
-public static void apagarS(Integer id) {
-	Serie serie = em.find(Serie.class, id);
-	em.getTransaction().begin();
-	em.remove(serie);
-	em.getTransaction().commit();
-}
-
-@SuppressWarnings("unused")
-private static void imprimirS(Serie serie) {
-			System.out.println(serie);
-			
-
-}
 }
