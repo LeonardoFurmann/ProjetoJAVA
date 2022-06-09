@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "series")
 public class Serie implements Serializable {

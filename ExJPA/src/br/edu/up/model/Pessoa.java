@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "usuario")
 public class Pessoa implements Serializable {
@@ -36,6 +37,7 @@ public class Pessoa implements Serializable {
 	
 	
 	public Integer getId() {
+		
 		return id;
 	}
 	public void setId(Integer id) {

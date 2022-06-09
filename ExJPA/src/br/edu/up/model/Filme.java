@@ -14,6 +14,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Table;
 
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "filmes")
 public class Filme implements Serializable {
@@ -36,6 +37,7 @@ public class Filme implements Serializable {
 	}
 	
 	public Integer getId() {
+		
 		return id;
 	}
 	public void setId(Integer id) {

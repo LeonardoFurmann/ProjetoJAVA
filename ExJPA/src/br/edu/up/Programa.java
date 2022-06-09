@@ -1,12 +1,12 @@
 package br.edu.up;
 
-import java.util.List;
+//import java.util.List;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
+//import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 
 import br.edu.up.model.Filme;
 import br.edu.up.model.Pessoa;
@@ -41,7 +41,10 @@ public class Programa {
 			System.out.println(" 4 - Listar Pessoas");
 			System.out.println(" 5 - Listar Filmes");
 			System.out.println(" 6 - Listar Séries");
-			System.out.println(" 7 - Sair");
+			System.out.println(" 7 - Remover Pessoa");
+			System.out.println(" 8 - Remover Filme");
+			System.out.println(" 9 - Remover Série");
+			System.out.println(" 10 - Sair");
 			System.out.print("\nInforme uma opção: ");
 			op = leitor.nextInt();
 			leitor.nextLine();
@@ -50,7 +53,7 @@ public class Programa {
 		case 1:
 			Pessoa novaPessoa = new Pessoa();
 			novaPessoa.CadastroPessoa(leitor);
-//			Pessoa.salvarP(novaPessoa);
+			Pessoa.salvarP(novaPessoa);
 			break;
 		case 2:
 			Filme novoFilme = new Filme();
@@ -72,7 +75,16 @@ public class Programa {
 			Serie.imprimirSeries(Serie.listarSeries());
 			break;
 		case 7:
-			System.out.println("Saiu.");
+			System.out.println("Digite o id: ");
+			Pessoa.apagarP(leitor.nextInt());
+			break;
+		case 8:
+			System.out.println("Digite o id: ");
+			Filme.apagar(leitor.nextInt());
+			break;
+		case 9:
+			System.out.println("Digite o id: ");
+			Serie.apagarS(leitor.nextInt());
 			break;
 		 default:
 			System.out.println("Opção Inválida");
@@ -81,7 +93,7 @@ public class Programa {
 		
 		
 		
-		}while(op != 7);
+		}while(op != 10);
 	
 		leitor.close();
 	}
